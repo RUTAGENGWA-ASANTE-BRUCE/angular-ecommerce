@@ -1,0 +1,62 @@
+<ng-container *ngIf="cartProducts.length > 0">
+    <div class="container">
+
+        <div class="relative flex flex-col min-w-[none] break-words bg-[#fff] bg-clip-border border border-solid border-[rgba(0,0,0,0.2)] rounded-md">
+            <div class="cartproduct">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Product Name</th>
+                            <th>Product Image</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                <tbody>
+
+                        <tr  *ngFor="let product of cartProducts; let i=index;">
+                            <td>{{i+1}}</td>
+                            <td>{{product.title}}</td>
+                            <td><img [src]="product.image" class="h-40 w-60 rounded-md" [alt]="product.title"></td>
+                            <td class="w-[25%]">{{product.description}}</td>
+                            <td class="w-[12%]">{{product.price}}</td>
+                            <td  class="w-[15%]">{{product.quantity}}</td>
+                            <td  class="w-[12%]">{{product.total}}</td>
+                            <td>
+                                <button (click)="removeItem(product)" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td><button (click)="emptyCart()" class="btn btn-danger">Empty Cart</button></td>
+                            <td><button routerLink="/products" class="btn btn-primary">Shop More</button></td>
+                            <td><button  class="btn btn-success">Checkout</button></td>
+                            <td><strong>Grand Total:</strong> {{grandTotal | currency}}</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+</ng-container>
+
+<ng-container *ngIf="cartProducts == 0">
+    
+    <div class="container">
+        <h5 class="h-[70vh] m-[25px] p-[25px] border text-xl font-bold">My Cart</h5>
+        <div class="absolute top-[20%] left-[35%] text-center">
+            <img src="https://www.divikingdom.com/wp-content/uploads/2021/03/woocommerce-ajax-add-to-cart.jpg" class="h-80" alt="">
+            <h4 class="font-semibold text-lg">Your cart is empty!</h4>
+        <h6 class="mt-2">Add item to it now</h6>
+        <button  routerLink="/products" class="btn mt-2 btn-primary">Shop Now</button>
+    </div>
+    
+</div>
+</ng-container>

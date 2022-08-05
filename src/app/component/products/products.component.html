@@ -1,0 +1,30 @@
+<div class="relative flex flex-col min-w-0 break-wordsw w-[40%] mt-2 bg-[#fff] bg-clip-border border border-solid border-[rgba(0,0,0,0.2)] rounded-md container-fluid">
+    <div class="container d-flex ">
+        <div class="flex flex-row ml-20">
+            <ng-container *ngFor="let product of productTypes">
+                <div class="ml-5 my-[15px] ">
+                    <a>
+
+                        <img class="h-20 w-20 rounded-md" [src]="product.image" [alt]="product.name" >
+                        <h6>{{product.name}}</h6>
+                    </a>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-2">
+    <div class="flex flex-row flex-wrap justify-between gap-5 mx-10">
+        <ng-container *ngFor="let item of products">
+
+            <div class="card col-md-3 p-2">
+                <img [src]="item.image" class="h-56 w-56 mx-auto" alt="">
+                <h5 class="whitespace-nowrap mt-2 text-ellipsis max-w-[100ch] overflow-hidden">{{item.title}}</h5>
+                <p  class="whitespace-nowrap mt-2 text-ellipsis max-w-[100ch] overflow-hidden">{{item.description}}</p>
+                <p><strong>Price:</strong>{{item.price | currency}}</p>
+                <button class="btn btn-primary w-40 mx-auto mt-2" (click)=addToCart(item) >add To cart</button>
+            </div>
+        </ng-container>
+    </div>
+</div>
